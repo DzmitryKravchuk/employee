@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="authorName" id="changelog-1.0">
+        <insert tableName="employee">
+            <column name="employee_id" value="1"/>
+            <column name="first_name" value="Петр"/>
+            <column name="last_name" value="Первый"/>
+            <column name="department_id" value="1"/>
+            <column name="job_title" value="директор"/>
+            <column name="gender" value="м"/>
+            <column name="date_of_birth" value="1990.01.01"/>
+        </insert>
+        <insert tableName="employee">
+            <column name="employee_id" value="2"/>
+            <column name="first_name" value="Екатерина"/>
+            <column name="last_name" value="Вторая"/>
+            <column name="department_id" value="1"/>
+            <column name="job_title" value="заместитель директора"/>
+            <column name="gender" value="ж"/>
+            <column name="date_of_birth" value="1991.02.01"/>
+        </insert>
+        <insert tableName="employee">
+            <column name="employee_id" value="3"/>
+            <column name="first_name" value="Петр"/>
+            <column name="last_name" value="Третий"/>
+            <column name="department_id" value="1"/>
+            <column name="job_title" value="бухгалтер"/>
+            <column name="gender" value="м"/>
+            <column name="date_of_birth" value="1991.02.02"/>
+        </insert>
+        <insert tableName="employee">
+            <column name="employee_id" value="4"/>
+            <column name="first_name" value="Иван"/>
+            <column name="last_name" value="Четвертый"/>
+            <column name="department_id" value="2"/>
+            <column name="job_title" value="рабочий"/>
+            <column name="gender" value="м"/>
+            <column name="date_of_birth" value="1991.03.02"/>
+        </insert>
+        <insert tableName="employee">
+            <column name="employee_id" value="5"/>
+            <column name="first_name" value="Виктор"/>
+            <column name="last_name" value="Пятый"/>
+            <column name="department_id" value="2"/>
+            <column name="job_title" value="рабочий"/>
+            <column name="gender" value="м"/>
+            <column name="date_of_birth" value="1991.03.01"/>
+        </insert>
+        <insert tableName="employee">
+            <column name="employee_id" value="6"/>
+            <column name="first_name" value="Станислав"/>
+            <column name="last_name" value="Шестой"/>
+            <column name="department_id" value="2"/>
+            <column name="job_title" value="рабочий"/>
+            <column name="gender" value="м"/>
+            <column name="date_of_birth" value="1991.03.03"/>
+        </insert>
+        <insert tableName="employee">
+            <column name="employee_id" value="7"/>
+            <column name="first_name" value="Елена"/>
+            <column name="last_name" value="Седьмая"/>
+            <column name="department_id" value="3"/>
+            <column name="job_title" value="уборщица"/>
+            <column name="gender" value="ж"/>
+            <column name="date_of_birth" value="1991.03.04"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

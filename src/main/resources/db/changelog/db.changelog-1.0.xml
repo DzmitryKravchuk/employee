@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="authorName" id="changelog-1.0">
+        <createTable tableName="employee">
+            <column name="employee_id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="character varying (100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="character varying (100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="department_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="job_title" type="character varying (100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="gender" type="character(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_of_birth" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+</databaseChangeLog>
