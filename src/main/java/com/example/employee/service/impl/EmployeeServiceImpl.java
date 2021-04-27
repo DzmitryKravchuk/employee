@@ -1,37 +1,46 @@
 package com.example.employee.service.impl;
 
 import com.example.employee.entity.Employee;
-import com.example.employee.exception.EmployeeNotFoundException;
+import com.example.employee.exception.ObjectNotFoundException;
 import com.example.employee.repository.EmployeeRepository;
 import com.example.employee.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
 import java.util.List;
 
+@Slf4j
+@Validated
 @Service
 @RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository repository;
 
     @Override
-    public void save(Employee employee) {
+    public void save(@Valid Employee employee) {
+        log.info("EmployeeServiceImpl save {}", employee);
         repository.save(employee);
     }
 
     @Override
     public Employee getById(Integer id) {
+        log.info("EmployeeServiceImpl get by id: {}", id);
         return repository.findById(id).
-                orElseThrow(() -> new EmployeeNotFoundException(" Object with index " + id + " not found"));
+                orElseThrow(() -> new ObjectNotFoundException(" Object with index " + id + " not found"));
     }
 
     @Override
     public List<Employee> getAll() {
+        log.info("EmployeeServiceImpl find ALL");
         return (List<Employee>) repository.findAll();
     }
 
     @Override
     public void delete(Integer id) {
+        log.info("EmployeeServiceImpl delete by id: {}", id);
         repository.deleteById(id);
     }
 }
