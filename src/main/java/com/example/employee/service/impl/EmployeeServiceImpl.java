@@ -7,20 +7,17 @@ import com.example.employee.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
-@Validated
 @Service
 @RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository repository;
 
     @Override
-    public void save(@Valid Employee employee) {
+    public void save(Employee employee) {
         log.info("EmployeeServiceImpl save {}", employee);
         repository.save(employee);
     }
@@ -35,7 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> getAll() {
         log.info("EmployeeServiceImpl find ALL");
-        return (List<Employee>) repository.findAll();
+        return repository.findAll();
     }
 
     @Override

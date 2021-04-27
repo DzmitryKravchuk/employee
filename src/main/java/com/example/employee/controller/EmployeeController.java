@@ -42,14 +42,14 @@ public class EmployeeController {
 
     @PostMapping()
     @Operation(summary = "Создание нового сотрудника", description = "Позволяет внести данные о работнике в систему")
-    public Employee saveEmployee(@RequestBody Employee employee) {
+    public Employee saveEmployee(@Valid @RequestBody Employee employee) {
         employeeService.save(employee);
         return employeeService.getById(employee.getEmployeeId());
     }
 
     @PutMapping()
     @Operation(summary = "Обновление информации о сотруднике")
-    public Employee updateEmployee(@RequestBody Employee employee) {
+    public Employee updateEmployee(@Valid @RequestBody Employee employee) {
         employeeService.getById(employee.getEmployeeId());
         employeeService.save(employee);
         return employeeService.getById(employee.getEmployeeId());
