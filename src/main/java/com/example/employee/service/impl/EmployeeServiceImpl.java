@@ -1,15 +1,18 @@
 package com.example.employee.service.impl;
 
 import com.example.employee.entity.Employee;
-import com.example.employee.exception.ObjectNotFoundException;
+import com.example.employee.exception.EmployeeServiceNotFoundException;
 import com.example.employee.repository.EmployeeRepository;
 import com.example.employee.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
 import java.util.List;
 
+@Validated
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -17,7 +20,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository repository;
 
     @Override
-    public void save(Employee employee) {
+    public void save(@Valid Employee employee) {
         log.info("EmployeeServiceImpl save {}", employee);
         repository.save(employee);
     }
@@ -26,7 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee getById(Integer id) {
         log.info("EmployeeServiceImpl get by id: {}", id);
         return repository.findById(id).
-                orElseThrow(() -> new ObjectNotFoundException(" Object with index " + id + " not found"));
+                orElseThrow(() -> new EmployeeServiceNotFoundException(" Object with index " + id + " not found"));
     }
 
     @Override

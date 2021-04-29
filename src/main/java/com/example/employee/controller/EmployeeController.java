@@ -6,7 +6,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,11 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.List;
 
-@Validated
 @RestController
 @RequestMapping("/employee/")
 @Tag(name = "Сотрудники", description = "Взаимодействие с базой сотрудников")
@@ -42,14 +39,14 @@ public class EmployeeController {
 
     @PostMapping()
     @Operation(summary = "Создание нового сотрудника", description = "Позволяет внести данные о работнике в систему")
-    public Employee saveEmployee(@Valid @RequestBody Employee employee) {
+    public Employee saveEmployee( @RequestBody Employee employee) {
         employeeService.save(employee);
         return employeeService.getById(employee.getEmployeeId());
     }
 
     @PutMapping()
     @Operation(summary = "Обновление информации о сотруднике")
-    public Employee updateEmployee(@Valid @RequestBody Employee employee) {
+    public Employee updateEmployee(@RequestBody Employee employee) {
         employeeService.getById(employee.getEmployeeId());
         employeeService.save(employee);
         return employeeService.getById(employee.getEmployeeId());
