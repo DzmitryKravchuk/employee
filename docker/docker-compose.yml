@@ -1,0 +1,48 @@
+version: '3.3'
+
+services:
+  postgres:
+    build:
+      context: services/postgres
+      dockerfile: Dockerfile.development
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=employee
+      - POSTGRES_PASSWORD=root
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+
+  amq:
+    build:
+      context: services/amq
+      dockerfile: Dockerfile.development
+    ports:
+      - 61613:61613
+      - 61616:61616
+      - 8161:8161
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./data/data/activemq:/data/activemq
+      - ./data/var/log/activemq:/var/log/activemq
+    environment:
+      - ACTIVEMQ_ADMIN_LOGIN=admin
+      - ACTIVEMQ_ADMIN_PASSWORD=admin
+
+  app:
+    build:
+      context: services/app
+      dockerfile: Dockerfile.development
+    environment:
+      - PORT=8080
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/employee
+    image: 'my-java-app'
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+      - amq
+
+volumes:
+  db-data:
