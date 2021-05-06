@@ -65,6 +65,14 @@ public class EmployeeServiceTest {
         assertEquals(entityFromBase.getFirstName(), employee.getFirstName());
     }
 
+    @Test
+    public void getByNameAndSurnameTest() {
+        Employee employee = createNewEmployee();
+        Employee entityFromBase = employeeRepository.findByFirstNameAndLastName(employee.getFirstName(),employee.getLastName());
+        assertEquals(entityFromBase.getFirstName(), employee.getFirstName());
+        assertEquals(entityFromBase.getLastName(), employee.getLastName());
+    }
+
 
     private Integer getRandomInt() {
         return RANDOM.nextInt(99);
