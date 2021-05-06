@@ -5,6 +5,7 @@ services:
     build:
       context: services/postgres
       dockerfile: Dockerfile.development
+    image: 'postgres'
     ports:
       - 5432:5432
     environment:
@@ -19,9 +20,7 @@ services:
       context: services/amq
       dockerfile: Dockerfile.development
     ports:
-      - 61613:61613
       - 61616:61616
-      - 8161:8161
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./data/data/activemq:/data/activemq
