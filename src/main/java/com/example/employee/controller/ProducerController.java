@@ -1,4 +1,4 @@
-package com.example.employee.activemq;
+package com.example.employee.controller;
 
 import com.example.employee.entity.Employee;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -18,7 +18,7 @@ import javax.jms.Queue;
 @RestController
 @Tag(name = "Asynchronous  messaging controller", description = "Use ActiveMQ queue")
 @RequestMapping("/async")
-public class Producer {
+public class ProducerController {
     private final JmsTemplate jmsTemplate;
     private final Queue queue;
 

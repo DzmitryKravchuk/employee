@@ -20,7 +20,10 @@ services:
       context: services/amq
       dockerfile: Dockerfile.development
     ports:
-      - 61616:61616
+      - "8161:8161"
+      - "61616:61616"
+    networks:
+        - bridge
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./data/data/activemq:/data/activemq
@@ -42,6 +45,10 @@ services:
     depends_on:
       - postgres
       - amq
+
+networks:
+  bridge:
+    driver: bridge
 
 volumes:
   db-data:

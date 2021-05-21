@@ -74,7 +74,7 @@ public class EmployeeController {
         return employeeService.getById(employee.getEmployeeId());
     }
 
-    @PutMapping()
+    @PutMapping("{id}")
     @Operation(summary = "Обновление информации о сотруднике")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Ok"),
@@ -86,9 +86,8 @@ public class EmployeeController {
                             @ExampleObject(name = "exceptionResponse", value = "Something went wrong")
                     })),
     })
-    public Employee updateEmployee(@RequestBody Employee employee) {
-        employeeService.getById(employee.getEmployeeId());
-        employeeService.save(employee);
+    public Employee updateEmployee(@RequestBody Employee employee, @PathVariable Integer id) {
+        employeeService.update(employee, id);
         return employeeService.getById(employee.getEmployeeId());
     }
 

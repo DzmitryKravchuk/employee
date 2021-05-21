@@ -2,6 +2,7 @@ package com.example.employee.service.impl;
 
 import com.example.employee.entity.Employee;
 import com.example.employee.exception.EmployeeServiceNotFoundException;
+import com.example.employee.exception.EmployeeServiceNotMatchIdUpdateException;
 import com.example.employee.repository.EmployeeRepository;
 import com.example.employee.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
@@ -42,5 +43,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void delete(Integer id) {
         log.info("EmployeeServiceImpl delete by id: {}", id);
         repository.deleteById(id);
+    }
+
+    @Override
+    public void update(Employee employee, Integer id) {
+        log.info("EmployeeServiceImpl update with id: {}", id);
+        Employee employeeFromBase=getById(id);
+        if (employee.getEmployeeId()!=id){
+            throw new EmployeeServiceNotMatchIdUpdateException(" Object from request has index "+ employee.getEmployeeId()+" and doesnt match index from url "+ id);
+        }
+        save(employee);
     }
 }
